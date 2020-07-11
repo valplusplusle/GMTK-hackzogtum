@@ -10,11 +10,13 @@
     overflow: hidden;
     background-image: url(./assets/images/gameBackground.PNG);
     background-size: cover;
+    border: solid;
+    border-color: black;
 }
 
 .backgroundImage {
-    background-image: url('./assets/images/hacker-2300772_1920.jpg');
-    background-size: cover;
+    background-image: url(./assets/images/hacker-2300772_1920.jpg);
+    background-size: inherit;
 }
 
 .screen {
@@ -28,24 +30,11 @@
 
 .keyboard {
     height: 128px;
-    width: 480px;
+    width: 620px;
     position: absolute;
     background-color: white;
-    left: 40px;
+    left: 0px;
     top: 410px;
-}
-
-.key {
-    height: 32px;
-    width: 64px;
-}
-
-.key--notpressed {
-    background-color: black;
-}
-
-.key--glow {
-    background-color: green;
 }
 
 .scoreBoard {
@@ -60,9 +49,4 @@
 .line {
     width: 100%;
     height: 32px;
-}
-
-.keyTest {
-    background-image: url(./assets/images/keys/testKey.png);
-    background-size: cover;
 }
