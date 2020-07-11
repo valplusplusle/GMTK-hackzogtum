@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "devserver": "webpack-dev-server --mode development",
-    "build-dev": "webpack --mode development"
+    "build-dev": "webpack --mode development && cp index.html dist && cp -R assets dist/"
   },
   "author": "Tobias Wich <tobias.wich@ecsec.de>",
   "license": "GPL-3.0-or-later",
