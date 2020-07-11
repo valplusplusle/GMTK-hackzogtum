@@ -1,3 +1,11 @@
+function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+ }
+
+function randomIntFromInterval(min: number, max: number) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 export function spawnRandomViruses() {
     let virusScreen = []
     for(let i = 0; i < 7; i++) {
@@ -21,9 +29,26 @@ export function drawViruses() {
     });
 }
 
-export function clickedVirus(virusId:number) {
+export async function clickedVirus(event:any) {
+    addPoints();
+
+
+    let virusId = event.target.id.slice(-1);
     let virusScreen = JSON.parse(window.localStorage.getItem('virusList')!);
     virusScreen[virusId] = false;
     window.localStorage.setItem('virusList',  JSON.stringify(virusScreen));
     drawViruses();
+    if(virusScreen.every((element: any) => !element)) {
+        await sleep(randomIntFromInterval(1000,4000));
+        spawnRandomViruses();
+        drawViruses();
+    }
+}
+
+export function addPoints() {
+    let points = window.localStorage.getItem('points')!;
+    let pointsAsNumber = Number(points);
+    pointsAsNumber = pointsAsNumber + 100;
+    window.localStorage.setItem('points', pointsAsNumber.toString());
+    document.getElementById('screenScore')!.innerHTML = pointsAsNumber.toString();
 }

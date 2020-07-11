@@ -28,6 +28,14 @@
     top: 40px;
 }
 
+.screenScore {
+    height: 200px;
+    width: 100%;
+    color: #ff39ce;
+    text-align: center;
+    font-size: xxx-large;
+}
+
 .keyboard {
     height: 150px;
     width: 655px;

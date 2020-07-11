@@ -1,6 +1,6 @@
 import {foo} from './keyProcessor';
 import {playBackgroundMusic} from './sound';
-import {clickedVirus as clickedVirusInner, spawnRandomViruses} from './virusSpawner';
+import {clickedVirus, spawnRandomViruses} from './virusSpawner';
 
 import '../assets/style/style.css';
 import '../assets/style/key.css';
@@ -14,13 +14,13 @@ function registerCBs(){
         let div = document.getElementById(`virus${i}`);
         if(div){
             div.onclick = () => {
-                clickedVirusInner(i);
-                console.log("test");
+                clickedVirus(event);
             };
         }
     }
 }
 
+window.localStorage.setItem('points', '0'); // init game with 0 Points
 playBackgroundMusic();
 foo();
 spawnRandomViruses();
