@@ -8,3 +8,8 @@
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
 }
+
+.backgroundImage {
+    background-image: url('./assets/images/hacker-2300772_1920.jpg');
+    background-size: cover;
+}
