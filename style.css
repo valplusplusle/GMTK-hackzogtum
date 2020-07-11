@@ -8,7 +8,7 @@
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
     overflow: hidden;
-    background-image: url(./assets/images/gameBackground.PNG);
+    background-image: url(./assets/images/gameBackground.png);
     background-size: cover;
     border: solid;
     border-color: black;
@@ -24,47 +24,50 @@
     width: 460px;
     position: absolute;
     background-color: black;
-    left: 35px;
-    top: 30px;
+    left: 110px;
+    top: 40px;
 }
 
 .keyboard {
-    height: 128px;
-    width: 620px;
+    height: 150px;
+    width: 655px;
     position: absolute;
-    background-color: white;
-    left: 0px;
-    top: 410px;
+    background-color: black;
+    left: 10px;
+    top: 400px;
+    padding: 10px;
 }
 
 .scoreBoard {
     height: 300px;
     width: 300px;
-    background-color: white;
+    background-color: black;
     left: 630px;
     position: absolute;
     top: 50px;
+    border: solid;
+    border-color: chartreuse;
 }
 
 .line {
-    width: 100%;
-    height: 32px;
+    width: 620px;
+    height: 30px;
 }
 
 .line1 {
     margin-left: 15px;
     width: 620px;
-    height: 32px;
+    height: 30px;
 }
 
 .line2 {
     margin-left: 30px;
     width: 575px;
-    height: 32px;
+    height: 30px;
 }
 
 .line3 {
     margin-left: 45px;
     width: 445px;
-    height: 32px;
+    height: 30px;
 }
