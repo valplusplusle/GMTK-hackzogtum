@@ -1,3 +1,3 @@
-import {foo} from './keyprocessor';
+import {foo} from './keyProcessor';
 
 foo();
