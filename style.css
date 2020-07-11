@@ -7,9 +7,62 @@
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
+    overflow: hidden;
+    background-image: url(./assets/images/gameBackground.PNG);
+    background-size: cover;
 }
 
 .backgroundImage {
     background-image: url('./assets/images/hacker-2300772_1920.jpg');
+    background-size: cover;
+}
+
+.screen {
+    height: 300px;
+    width: 460px;
+    position: absolute;
+    background-color: black;
+    left: 35px;
+    top: 30px;
+}
+
+.keyboard {
+    height: 128px;
+    width: 480px;
+    position: absolute;
+    background-color: white;
+    left: 40px;
+    top: 410px;
+}
+
+.key {
+    height: 32px;
+    width: 64px;
+}
+
+.key--notpressed {
+    background-color: black;
+}
+
+.key--glow {
+    background-color: green;
+}
+
+.scoreBoard {
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    left: 630px;
+    position: absolute;
+    top: 50px;
+}
+
+.line {
+    width: 100%;
+    height: 32px;
+}
+
+.keyTest {
+    background-image: url(./assets/images/keys/testKey.png);
     background-size: cover;
 }
