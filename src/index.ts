@@ -1,4 +1,4 @@
-import {foo} from './keyProcessor';
+import {startKeyGame} from './keyProcessor';
 import {playBackgroundMusic} from './sound';
 import {clickedVirus, spawnRandomViruses} from './virusSpawner';
 
@@ -22,6 +22,6 @@ function registerCBs(){
 
 window.localStorage.setItem('points', '0'); // init game with 0 Points
 playBackgroundMusic();
-foo();
+startKeyGame();
 spawnRandomViruses();
 registerCBs();

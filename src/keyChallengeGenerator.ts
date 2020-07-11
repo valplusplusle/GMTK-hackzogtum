@@ -10,6 +10,7 @@ export type KeyChallenge  = {
     key : string,
     action : KeyAction 
     target: number
+    current : number
 }
 
 export type KeyChallengeSet = {
@@ -18,7 +19,8 @@ export type KeyChallengeSet = {
 
 export type KeyChallengeDifficulty = number;
 
-const actionPool = [KeyAction.HOLD, KeyAction.SPAM];
+//const actionPool = [KeyAction.HOLD, KeyAction.SPAM];
+const actionPool = [KeyAction.SPAM];
 
 
 export class KeyChallengeGenerator{
@@ -47,6 +49,7 @@ export class KeyChallengeGenerator{
             res.keys.push(this.genKeyChallenge());
         }
 
+        console.log(`generated cahlle ${res.keys.length}`);
         return res; 
     }
 
@@ -70,7 +73,8 @@ export class KeyChallengeGenerator{
         return {
             key: key,
             action: action,
-            target: target
+            target: target,
+            current: 0,
         }
     }
 

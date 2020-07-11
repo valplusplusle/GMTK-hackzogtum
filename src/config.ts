@@ -1,6 +1,7 @@
 
 //duration for each challenges in ms
 export const TIME_WINDOW : number = 5000; 
+export const GAME_TICK_DURATION : number = 50;
 
 //min and max for target of action SPAM
 export const MAX_SPAM_NBR : number = 5; 
@@ -12,3 +13,7 @@ export const MIN_TARGET_TIME : number = 4000;
 
 //available keys which are used to gen challenges
 export const AVAIL_KEYS = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
+
+
+export const PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE :number = .3;
+export const DIFFICULTY_INCREASE = .3
