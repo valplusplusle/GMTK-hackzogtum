@@ -2,7 +2,7 @@
   "name": "foobar",
   "version": "1.0.0",
   "description": "Cool game",
-  "main": "index.js",
+  "main": "game.js",
   "scripts": {
     "compile": "tsc"
   },
