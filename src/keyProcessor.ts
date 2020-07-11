@@ -18,9 +18,9 @@ export enum KeyState {
 	RELEASED,
 }
 
-export type KeyEvent {
-	key: number;
-	state: KeyState;
+export type KeyEvent = {
+	key: number,
+	state: KeyState,
 }
 
 export interface KeyObserver {
@@ -31,8 +31,8 @@ export enum ChallengeOutcome {
 	SOLVED,
 	FAILED,
 }
-export type ChallengeEvent {
-	state: ChallengeOutcome;
+export type ChallengeEvent = {
+	state: ChallengeOutcome,
 }
 export interface ChallengeObserver {
 	(evt: ChallengeEvent): void;
