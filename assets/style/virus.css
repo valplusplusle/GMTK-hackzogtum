@@ -5,7 +5,15 @@
     background-size: cover;
 }
 
-.virus1 {
+.hidden {
+	visibility: hidden;
+}
+
+.shown {
+	visibility: visible;
+}
+
+.virus0 {
     top: 20px;
     left: 325px;
     -webkit-animation-name: animationVirus1;
@@ -15,7 +23,7 @@
 	-webkit-animation-timing-function: linear;
 }
 
-.virus2 {
+.virus1 {
     top: 70px;
     left: 110px;
     -webkit-animation-name: animationVirus2;
@@ -25,7 +33,7 @@
 	-webkit-animation-timing-function: linear;
 }
 
-.virus3 {
+.virus2 {
     top: 170px;
     left: 50px;
     -webkit-animation-name: animationVirus3;
@@ -35,7 +43,7 @@
 	-webkit-animation-timing-function: linear;
 }
 
-.virus4 {
+.virus3 {
     top: 240px;
     left: 300px;
     -webkit-animation-name: animationVirus4;
@@ -45,7 +53,7 @@
 	-webkit-animation-timing-function: linear;
 }
 
-.virus5 {
+.virus4 {
     top: 140px;
     left: 380px;
     -webkit-animation-name: animationVirus5;
@@ -55,7 +63,7 @@
 	-webkit-animation-timing-function: linear;
 }
 
-.virus6 {
+.virus5 {
     top: 210px;
     left: 100px;
     -webkit-animation-name: animationVirus6;
@@ -65,7 +73,7 @@
 	-webkit-animation-timing-function: linear;
 }
 
-.virus7 {
+.virus6 {
     top: 40px;
     left: 200px;
     -webkit-animation-name: animationVirus7;
