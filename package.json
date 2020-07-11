@@ -2,14 +2,22 @@
   "name": "foobar",
   "version": "1.0.0",
   "description": "Cool game",
-  "main": "game.js",
+  "private": true,
   "scripts": {
-    "compile": "tsc"
+    "devserver": "webpack-dev-server --mode development"
   },
   "author": "Tobias Wich <tobias.wich@ecsec.de>",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
+    "ts-loader": "^8.0.0",
     "tslint": "^6.1.2",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "lodash": "^4.17.19",
+    "rxjs": "^6.6.0",
+    "webpack-dev-server": "^3.11.0"
   }
 }
