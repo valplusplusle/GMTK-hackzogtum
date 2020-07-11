@@ -3,7 +3,7 @@
     width: 64px;
 }
 
-.key--notpressed {
+.key--noGlow {
     background-color: black;
 }
 
@@ -23,39 +23,287 @@
     background-image: url(./assets/images/keys/GC_taste_07_0_durchsichtig_01.png);
     background-size: cover;
 }
+.key0--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_0_durchsichtig_01.png);
+    background-size: cover;
+}
 .key1 {
     background-image: url(./assets/images/keys/GC_taste_07_1_durchsichtig_01.png);
+    background-size: cover;
+}
+.key1--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_1_durchsichtig_01.png);
     background-size: cover;
 }
 .key2 {
     background-image: url(./assets/images/keys/GC_taste_07_2_durchsichtig_01.png);
     background-size: cover;
 }
+.key2--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_2_durchsichtig_01.png);
+    background-size: cover;
+}
 .key3 {
     background-image: url(./assets/images/keys/GC_taste_07_3_durchsichtig_01.png);
+    background-size: cover;
+}
+.key3--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_3_durchsichtig_01.png);
     background-size: cover;
 }
 .key4 {
     background-image: url(./assets/images/keys/GC_taste_07_4_durchsichtig_01.png);
     background-size: cover;
 }
+.key4--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_4_durchsichtig_01.png);
+    background-size: cover;
+}
 .key5 {
     background-image: url(./assets/images/keys/GC_taste_07_5_durchsichtig_01.png);
+    background-size: cover;
+}
+.key5--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_5_durchsichtig_01.png);
     background-size: cover;
 }
 .key6 {
     background-image: url(./assets/images/keys/GC_taste_07_6_durchsichtig_01.png);
     background-size: cover;
 }
+.key6--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_6_durchsichtig_01.png);
+    background-size: cover;
+}
 .key7 {
     background-image: url(./assets/images/keys/GC_taste_07_7_durchsichtig_01.png);
+    background-size: cover;
+}
+.key7--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_7_durchsichtig_01.png);
     background-size: cover;
 }
 .key8 {
     background-image: url(./assets/images/keys/GC_taste_07_8_durchsichtig_01.png);
     background-size: cover;
 }
+.key8--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_8_durchsichtig_01.png);
+    background-size: cover;
+}
 .key9 {
     background-image: url(./assets/images/keys/GC_taste_07_9_durchsichtig_01.png);
+    background-size: cover;
+}
+.key9--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_9_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyA {
+    background-image: url(./assets/images/keys/GC_taste_07_A_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyA--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_A_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyB {
+    background-image: url(./assets/images/keys/GC_taste_07_B_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyB--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_B_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyC {
+    background-image: url(./assets/images/keys/GC_taste_07_C_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyC--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_C_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyD {
+    background-image: url(./assets/images/keys/GC_taste_07_D_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyD--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_D_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyE {
+    background-image: url(./assets/images/keys/GC_taste_07_E_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyE--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_E_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyF {
+    background-image: url(./assets/images/keys/GC_taste_07_F_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyF--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_F_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyG {
+    background-image: url(./assets/images/keys/GC_taste_07_G_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyG--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_G_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyH {
+    background-image: url(./assets/images/keys/GC_taste_07_H_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyH--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_H_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyI {
+    background-image: url(./assets/images/keys/GC_taste_07_I_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyI--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_I_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyJ {
+    background-image: url(./assets/images/keys/GC_taste_07_J_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyJ--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_J_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyK {
+    background-image: url(./assets/images/keys/GC_taste_07_K_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyK--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_K_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyL {
+    background-image: url(./assets/images/keys/GC_taste_07_L_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyL--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_L_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyM {
+    background-image: url(./assets/images/keys/GC_taste_07_M_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyM--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_M_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyN {
+    background-image: url(./assets/images/keys/GC_taste_07_N_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyN--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_N_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyO {
+    background-image: url(./assets/images/keys/GC_taste_07_O_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyO--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_O_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyP {
+    background-image: url(./assets/images/keys/GC_taste_07_P_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyP--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_P_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyQ {
+    background-image: url(./assets/images/keys/GC_taste_07_Q_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyQ--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_Q_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyR {
+    background-image: url(./assets/images/keys/GC_taste_07_R_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyR--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_R_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyS {
+    background-image: url(./assets/images/keys/GC_taste_07_S_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyS--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_S_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyT {
+    background-image: url(./assets/images/keys/GC_taste_07_T_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyT--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_T_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyU {
+    background-image: url(./assets/images/keys/GC_taste_07_U_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyU--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_U_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyV {
+    background-image: url(./assets/images/keys/GC_taste_07_V_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyV--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_V_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyW {
+    background-image: url(./assets/images/keys/GC_taste_07_W_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyW--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_W_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyX {
+    background-image: url(./assets/images/keys/GC_taste_07_X_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyX--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_X_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyY {
+    background-image: url(./assets/images/keys/GC_taste_07_Y_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyY--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_Y_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyZ {
+    background-image: url(./assets/images/keys/GC_taste_07_Z_durchsichtig_01.png);
+    background-size: cover;
+}
+.keyZ--pressed {
+    background-image: url(./assets/images/keys/GC_tasteGd_07_Z_durchsichtig_01.png);
     background-size: cover;
 }
