@@ -1,0 +1,15 @@
+{
+  "name": "foobar",
+  "version": "1.0.0",
+  "description": "Cool game",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc"
+  },
+  "author": "Tobias Wich <tobias.wich@ecsec.de>",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.6"
+  }
+}
