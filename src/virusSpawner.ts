@@ -48,7 +48,7 @@ export async function clickedVirus(event:any) {
 export function addPoints() {
     let points = window.localStorage.getItem('points')!;
     let pointsAsNumber = Number(points);
-    pointsAsNumber = pointsAsNumber + 100;
+    pointsAsNumber = pointsAsNumber + 10;
     window.localStorage.setItem('points', pointsAsNumber.toString());
     document.getElementById('screenScore')!.innerHTML = pointsAsNumber.toString();
 }
