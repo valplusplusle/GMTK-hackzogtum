@@ -8,14 +8,14 @@
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
     overflow: hidden;
-    background-image: url(./assets/images/gameBackground.PNG);
+    background-image: url(../images/gameBackground.png);
     background-size: cover;
     border: solid;
     border-color: black;
 }
 
 .backgroundImage {
-    background-image: url(./assets/images/hacker-2300772_1920.jpg);
+    background-image: url(../images/hacker-2300772_1920.jpg);
     background-size: inherit;
 }
 

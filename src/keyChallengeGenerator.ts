@@ -1,4 +1,4 @@
-import {MAX_TARGET_TIME, MIN_TARGET_TIME, MAX_SPAM_NBR, MIN_SPAM_NBR, AVAIL_KEYS} from "./config";
+import {MAX_TARGET_TIME, MIN_TARGET_TIME, MAX_SPAM_NBR, MIN_SPAM_NBR, AVAIL_KEYS} from './config';
 
 export enum KeyAction {
     HOLD,

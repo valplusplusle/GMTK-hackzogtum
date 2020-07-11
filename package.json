@@ -4,11 +4,16 @@
   "description": "Cool game",
   "private": true,
   "scripts": {
-    "devserver": "webpack-dev-server --mode development"
+    "devserver": "webpack-dev-server --mode development",
+    "build-dev": "webpack --mode development"
   },
   "author": "Tobias Wich <tobias.wich@ecsec.de>",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
+    "css-loader": "^3.6.0",
+    "file-loader": "^6.0.0",
+    "html-loader": "^1.1.0",
+    "style-loader": "^1.2.1",
     "ts-loader": "^8.0.0",
     "tslint": "^6.1.2",
     "typescript": "^3.9.6",
