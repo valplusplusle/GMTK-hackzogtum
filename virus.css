@@ -1,0 +1,82 @@
+.virus {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    background-size: cover;
+}
+
+.virus1 {
+    top: 20px;
+    left: 325px;
+    -webkit-animation-name: animationVirus1;
+	-webkit-animation-duration: 0.3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
+}
+
+.virus2 {
+    top: 70px;
+    left: 110px;
+    -webkit-animation-name: animationVirus2;
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
+}
+
+.virus3 {
+    top: 170px;
+    left: 50px;
+    -webkit-animation-name: animationVirus3;
+	-webkit-animation-duration: 0.7s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
+}
+
+.virus4 {
+    top: 240px;
+    left: 300px;
+    -webkit-animation-name: animationVirus4;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
+}
+
+@keyframes animationVirus1{
+	0% {
+		background-image: url('./assets/images/virus/3d-Flo_a.png');
+	}
+    100% {
+		background-image: url('./assets/images/virus/3d-Flo_b.png');
+	}	
+}
+
+@keyframes animationVirus2{
+	0% {
+		background-image: url('./assets/images/virus/benmaxrei_win_a.png');
+	}
+    100% {
+		background-image: url('./assets/images/virus/benmaxrei_win_b.png');
+	}	
+}
+
+@keyframes animationVirus3{
+	0% {
+		background-image: url('./assets/images/virus/legion_a.png');
+	}
+    100% {
+		background-image: url('./assets/images/virus/legion_b.png');
+	}	
+}
+
+@keyframes animationVirus4{
+	0% {
+		background-image: url('./assets/images/virus/sake_a.png');
+	}
+    100% {
+		background-image: url('./assets/images/virus/sake_b.png');
+	}	
+}
