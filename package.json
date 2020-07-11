@@ -10,6 +10,7 @@
   "author": "Tobias Wich <tobias.wich@ecsec.de>",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
+    "copy-webpack-plugin": "^6.0.3",
     "css-loader": "^3.6.0",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
