@@ -1,5 +1,5 @@
 import {foo} from './keyprocessor';
-import {loopBackgroundMusic} from './sound';
+import {playBackgroundMusic} from './sound';
 
 playBackgroundMusic();
 foo();
