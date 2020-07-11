@@ -45,6 +45,36 @@
 	-webkit-animation-timing-function: linear;
 }
 
+.virus5 {
+    top: 140px;
+    left: 380px;
+    -webkit-animation-name: animationVirus5;
+	-webkit-animation-duration: 0.7s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
+}
+
+.virus6 {
+    top: 210px;
+    left: 100px;
+    -webkit-animation-name: animationVirus6;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
+}
+
+.virus7 {
+    top: 40px;
+    left: 200px;
+    -webkit-animation-name: animationVirus7;
+	-webkit-animation-duration: 0.4s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
+}
+
 @keyframes animationVirus1{
 	0% {
 		background-image: url('../images/virus/3d-Flo_a.png');
@@ -78,5 +108,32 @@
 	}
     100% {
 		background-image: url('../images/virus/sake_b.png');
+	}	
+}
+
+@keyframes animationVirus5{
+	0% {
+		background-image: url('../images/virus/valleplusplusle_a.png');
+	}
+    100% {
+		background-image: url('../images/virus/valleplusplusle_b.png');
+	}	
+}
+
+@keyframes animationVirus6{
+	0% {
+		background-image: url('../images/virus/vik_a.png');
+	}
+    100% {
+		background-image: url('../images/virus/vik_b.png');
+	}	
+}
+
+@keyframes animationVirus7{
+	0% {
+		background-image: url('../images/virus/ralof_a.png');
+	}
+    100% {
+		background-image: url('../images/virus/ralof_b.png');
 	}	
 }
