@@ -109,3 +109,13 @@
     width: 445px;
     height: 32px;
 }
+
+.progressBar {
+    margin-left: 70px;
+    background-color: purple !important;
+}
+
+.textOfProgressBars {
+    color: #ff39ce;
+    text-align: center;
+}

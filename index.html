@@ -8,9 +8,6 @@
     <body class="backgroundImage">
         <div id="gameRegion" class="gameRegion">
 
-            <progress id="timewindow" value=0 max=100></progress>
-            <progress id="challengeProgress" value=0 max=100></progress>
-
             <div class="volumeControl">
                 <button onclick="document.getElementById('bgaudio').volume+=0.1">Volume Up</button>
                 <button onclick="document.getElementById('bgaudio').volume-=0.1">Volume Down</button>
@@ -74,6 +71,10 @@
             <div id="scoreBoard" class="scoreBoard">
                 <div class="screenScore">HIGHSCORE</div>
                 <div id="screenScore" class="screenScore"></div>
+                <div class="textOfProgressBars">Time to enter keys:</div>
+                <progress id="timewindow" class="progressBar" value=0 max=100></progress>
+                <div class="textOfProgressBars">Attack passed:</div>
+                <progress id="challengeProgress" class="progressBar" value=0 max=100></progress>
             </div>
         </div>
 
