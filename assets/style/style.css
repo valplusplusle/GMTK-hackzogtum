@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Aldrich';
+    src:  url('../fonts/Aldrich-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Aldrich', sans-serif;
+    font-size: 0.85rem;
+}
 
 .endscreen{
     background-color: black;

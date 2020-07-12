@@ -2,10 +2,10 @@ import {KeyGame} from './keyGame';
 import {playBackgroundMusic, stopBackgroundMusic, playGameOver, selectNormalTrack, selectHcTrack} from './sound';
 import {VirusController} from './virusSpawner';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/style/style.css';
 import '../assets/style/key.css';
 import '../assets/style/virus.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const vc = new VirusController();
