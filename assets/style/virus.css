@@ -148,6 +148,7 @@
 
 
 .explosion0 {
+	pointer-events: none;
     -webkit-animation-name: animationExplosion0;
 	-webkit-animation-duration: 1.0s;
 	-webkit-animation-iteration-count: infinite;
