@@ -126,7 +126,7 @@ export class KeyGameRound{
 		let sub = timer(0, 200).subscribe((v)=>{
 			let perCent = (v/(TIME_WINDOW/200))*100;
 			if(hc){
-				let perCent = (v/(TIME_WINDOW_HC/200))*100;
+				perCent = (v/(TIME_WINDOW_HC/200))*100;
 			}
 			//console.log(`set progress to ${perCent}`)
 			setTimeWindow(perCent);
