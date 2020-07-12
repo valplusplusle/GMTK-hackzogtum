@@ -1,6 +1,6 @@
 
 //duration for each challenges in ms
-export const TIME_WINDOW : number = 10000; 
+export const TIME_WINDOW : number = 13000; 
 export const GAME_TICK_DURATION : number = 50;
 
 //min and max for target of action SPAM
@@ -18,7 +18,7 @@ export const AVAIL_KEYS = ["1","2","3","4","5","6","7","8","9","0","A","B","C","
 export const PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE :number = .8;
 
 //if difficulty exceeds the thresh the gettin harder callback is called
-export const DIFFICULTY_INCREASE = .3
+export const DIFFICULTY_INCREASE = .4
 export const DIFFICULTY_CRITICAL_THRESH = 8; 
 
 export const BLINK_DURATION_MS = 100;
