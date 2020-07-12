@@ -105,6 +105,15 @@
     margin-left: 440px;
 }
 
+.hcModeInput {
+    margin-top: 20px;
+    margin-left: 425px;
+}
+
+.hcModeLabel {
+    color: #ff39ce;
+}
+
 .backgroundImage {
     background-color: black;
 }

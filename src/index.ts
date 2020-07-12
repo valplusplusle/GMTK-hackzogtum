@@ -1,5 +1,5 @@
 import {KeyGame} from './keyGame';
-import {playBackgroundMusic, stopBackgroundMusic, playGameOver} from './sound';
+import {playBackgroundMusic, stopBackgroundMusic, playGameOver, selectNormalTrack, selectHcTrack} from './sound';
 import {VirusController} from './virusSpawner';
 
 import '../assets/style/style.css';
@@ -10,6 +10,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const vc = new VirusController();
 const keygame = new KeyGame();
+
+function isHCMode(): boolean {
+	const hcModeBox = document.getElementById("hardcore_mode");
+	if (hcModeBox instanceof HTMLInputElement) {
+		return hcModeBox.checked;
+	}
+	return false;
+}
 
 function registerCBs(){ 
 	
@@ -25,7 +33,6 @@ function registerCBs(){
 	let startGameBtn = document.getElementById("startGameBtn");
 	if (startGameBtn) {
 		startGameBtn.onclick = (e => {
-			playBackgroundMusic();
 			startGame();
 
 			let splash = document.getElementById("splash");
@@ -61,7 +68,14 @@ function startGame() {
 	keygame.registerGettinCriticalCB(()=>{console.log("it's gettin harder")}); 
 	
 	keygame.startKeyGame();
+
+	if (isHCMode()) {
+		selectHcTrack();
+	} else {
+		selectNormalTrack();
+	}
 	
+	playBackgroundMusic();
 	vc.start();
 }
 
