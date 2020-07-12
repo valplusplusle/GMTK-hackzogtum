@@ -7,6 +7,11 @@
     </head>
     <body class="backgroundImage">
         <div id="gameRegion" class="gameRegion">
+            <div class="volumeControl">
+                <button onclick="document.getElementById('bgaudio').volume+=0.1">Volume Up</button>
+                <button onclick="document.getElementById('bgaudio').volume-=0.1">Volume Down</button>
+                <button onclick="let e = document.getElementById('bgaudio'); e.muted = !e.muted">Mute</button>
+            </div> 
             <div id="screen" class="screen">
                 <div id="virus0" class="virus virus0 hidden" ></div>
                 <div id="virus1" class="virus virus1 hidden" ></div>
@@ -70,19 +75,19 @@
 
         <div>
             <audio id="bgaudio" loop preload="auto">
-                <source src="assets/audio/music/Theme3.mp3" type="audio/mp3">
+                <source src="assets/audio/music/MainTheme.mp3" type="audio/mp3">
             </audio>
             <!-- TODO: style volume controls -->
-            <div>
+        </div>
+
+        <!-- TODO: make splash screen nice and overlay the game -->
+        <div id="splash" class="splash">
+            <div class="volumeControl">
                 <button onclick="document.getElementById('bgaudio').volume+=0.1">Volume Up</button>
                 <button onclick="document.getElementById('bgaudio').volume-=0.1">Volume Down</button>
                 <button onclick="let e = document.getElementById('bgaudio'); e.muted = !e.muted">Mute</button>
             </div> 
-        </div>
-
-        <!-- TODO: make splash screen nice and overlay the game -->
-        <div id="splash">
-            <button id="startGameBtn" onclick="sound.playBackgroundMusic();">Start game</button>
+            <button id="startGameBtn" class="btn startButton" onclick="sound.playBackgroundMusic();">Start game</button>
         </div>
 
     </body>
