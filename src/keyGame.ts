@@ -206,7 +206,7 @@ export class KeyGameRound{
 	solved(): boolean{
 		//if this gets called we should clean up
 		this.cleanup();
-		return PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE < (this.solvedNumber / this.targetNumber);
+		return PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE <= (this.solvedNumber / this.targetNumber);
 	}
 
 }
