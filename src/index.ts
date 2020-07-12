@@ -11,18 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const vc = new VirusController();
 const keygame = new KeyGame();
 
-keygame.registerEndOfGameCB(()=>{
-    console.log("you fucked up");
-    stopBackgroundMusic();
-    alert("you fucked up - the system is out of control ;)")
-}); 
-
-keygame.registerGettinCriticalCB(()=>{
-    console.log("it's gettin harder")
-}); 
-
-
-
 function registerCBs(){ 
     for(var i=0; i<7; i++){
         let div = document.getElementById(`virus${i}`);
@@ -49,7 +37,11 @@ function registerCBs(){
 
 function startGame() {
 	const keygame = new KeyGame();
-	keygame.registerEndOfGameCB(()=>{console.log("you fucked up")}); 
+	keygame.registerEndOfGameCB(()=>{
+        console.log("you fucked up");
+        stopBackgroundMusic();
+        alert("you fucked up - the system is out of control ;)")
+    }); 
 	keygame.registerGettinCriticalCB(()=>{console.log("it's gettin harder")}); 
 	
 	keygame.startKeyGame();

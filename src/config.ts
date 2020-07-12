@@ -17,6 +17,7 @@ export const AVAIL_KEYS = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
 export const PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE :number = .3;
 
+//if difficulty exceeds the thresh the gettin harder callback is called
 export const DIFFICULTY_INCREASE = .3
 export const DIFFICULTY_CRITICAL_THRESH = 8; 
 
