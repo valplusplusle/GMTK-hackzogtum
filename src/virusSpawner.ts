@@ -72,7 +72,7 @@ export class VirusController {
     }
 
     spawnRandomViruses() {
-        console.log("Spawning new Viruses.");
+        //console.log("Spawning new Viruses.");
         let virusNumber = [];
         while (virusNumber.length == 0) {
             for (let i = 0; i < 7; i++) {
@@ -124,9 +124,10 @@ export class VirusController {
         this.playSoundEffect();
     
         let virusId = Number.parseInt(event.target.id.slice(-1));
-        console.log("Clicked on virus " + virusId);
+        //console.log("Clicked on virus " + virusId);
         let pos = this.index.get(virusId);
         if (pos) {
+            //this.delVirus(virusId, pos);
             this.killVirus(virusId, pos);
         }
 
@@ -146,7 +147,7 @@ export class VirusController {
     }
 
     migrateVirus() {
-        console.log("Trying to move Virus.");
+        //console.log("Trying to move Virus.");
         let numVirus = this.index.size;
         if (numVirus > 0) {
             let selectedIndex = randomIntFromInterval(0, numVirus-1);

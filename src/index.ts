@@ -39,7 +39,7 @@ function registerCBs(){
 function startGame() {
 	const keygame = new KeyGame();
 	keygame.registerEndOfGameCB(()=>{
-        console.log("you fucked up");
+        //console.log("you fucked up");
 		vc.stop();
         stopBackgroundMusic();
 		playGameOver();
@@ -56,7 +56,7 @@ function startGame() {
 		if(scoreField){
 		 scoreField.innerHTML = vc.getScore();
 		}
-		console.log("end");
+		//console.log("end");
     }); 
 	keygame.registerGettinCriticalCB(()=>{console.log("it's gettin harder")}); 
 	

@@ -93,7 +93,7 @@ export class KeyGame{
 				}
 				//get and register next challenges
 				curKeyGame = new KeyGameRound(Math.floor(difficulty), this.keyChallengeGenerator, this.keyprocessor);
-				console.log("new game started");
+				//console.log("new game started");
 			}
 
 		}
@@ -115,7 +115,7 @@ export class KeyGameRound{
 		setTimeWindow(0);
 		let sub = timer(0, 200).subscribe((v)=>{
 			let perCent = (v/(TIME_WINDOW/200))*100;
-			console.log(`set progress to ${perCent}`)
+			//console.log(`set progress to ${perCent}`)
 			setTimeWindow(perCent);
 		});
 		this.subsToStop.push(sub);
@@ -131,7 +131,7 @@ export class KeyGameRound{
 		this.challengesToSolve = keyChallengeGenerator.getChallenge(difficulty);
 		//difficulty is adjusted so get the actual length
 		this.targetNumber = this.challengesToSolve.length;
-		console.log(`number challenges ${this.targetNumber}`);
+		//console.log(`number challenges ${this.targetNumber}`);
 
 		this.challengesToSolve.forEach((keyChall: KeyChallenge)=>{
 			let subject = new Subject<string>();
@@ -154,7 +154,7 @@ export class KeyGameRound{
 				if(keyChall.action === KeyAction.SPAM){
 					keyChall.current += 1;
 					if(keyChall.current >= keyChall.target){
-						console.log(`solved`);
+						//console.log(`solved`);
 						this.solvedNumber++;
 						//end subs if nesc
 						keyChall.subs.forEach((s)=>s.unsubscribe());
