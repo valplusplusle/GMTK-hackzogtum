@@ -49,6 +49,9 @@
 .screen {
     height: 300px;
     width: 460px;
+    position: absolute;
+    left: 85px;
+    top: 50px;
 }
 
 .screenPic {
@@ -60,8 +63,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 999999;
-    padding-top: 50px;
-    padding-left: 80px;
 }
 
 .screenScore {

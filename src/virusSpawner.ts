@@ -47,6 +47,7 @@ export class VirusController {
     }
 
     public start() {
+        this.points = 0;
         this.spawnRandomViruses();
     }
 

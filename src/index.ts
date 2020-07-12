@@ -39,6 +39,7 @@ function startGame() {
 	const keygame = new KeyGame();
 	keygame.registerEndOfGameCB(()=>{
         console.log("you fucked up");
+		vc.stop();
         stopBackgroundMusic();
         alert("you fucked up - the system is out of control ;)")
     }); 
