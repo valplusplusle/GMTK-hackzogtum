@@ -43,6 +43,13 @@ function startGame() {
 		vc.stop();
         stopBackgroundMusic();
 		playGameOver();
+
+		//endviruses
+		for(let i=0; i<4; i++){
+        	document.getElementById(`endv${i}`)?.classList.remove("hidden");
+        	document.getElementById(`endv${i}`)?.classList.add("shown");
+		}
+
         document.getElementById("endscreen")?.classList.remove("endscreen--hidden");
 		document.getElementById("endscreen")?.classList.add("endscreen--visible");
 		let scoreField = document.getElementById("endscoreval");
