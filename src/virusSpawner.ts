@@ -83,6 +83,7 @@ export class VirusController {
 
     public async clickedVirus(event:any) {
         this.addPoints();
+        this.playSoundEffect();
     
         let virusId = Number.parseInt(event.target.id.slice(-1));
         console.log("Clicked on virus " + virusId);
@@ -114,6 +115,20 @@ export class VirusController {
         if (virus) {
             virus.style.top  = ((y * virusSize) +2) + "px";
             virus.style.left = ((x * virusSize) +2) + "px";
+        }
+    }
+
+    public playSoundEffect() {
+        var x = randomIntFromInterval(0,2);
+        if(x == 0) {
+            var audio = new Audio('../assets/audio/effects/Shoot1.mp3');
+            audio.play();
+        } else if(x == 1) {
+            var audio = new Audio('../assets/audio/effects/Shoot2.mp3');
+            audio.play();
+        } else if(x == 2) {
+            var audio = new Audio('../assets/audio/effects/Shoot3.mp3');
+            audio.play();
         }
     }
 
