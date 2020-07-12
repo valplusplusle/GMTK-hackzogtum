@@ -159,6 +159,8 @@ export class KeyGameRound{
 						//end subs if nesc
 						keyChall.subs.forEach((s)=>s.unsubscribe());
 						stopKeyGlow(keyChall.key);
+						var audio = new Audio('./assets/audio/effects/KeyReady.mp3');
+						audio.play();
 						this.updateProgressProgressBar();
 						sub.unsubscribe();
 						
@@ -195,7 +197,3 @@ export class KeyGameRound{
 	}
 
 }
-
-
-
-
