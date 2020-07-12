@@ -3,7 +3,7 @@ import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_
 import { timer, Subject } from 'rxjs';
 
 
-export class KeyProcessor {
+class KeyProcessor {
 
 	private keyMem = new Set<number>();
 	private subjectMap: Map<string, Subject<string>> = new Map();
@@ -36,12 +36,20 @@ export class KeyProcessor {
 
 }
 
-export function startKeyGame() {
+
+
+export class KeyGame{
+	private keyprocessor = new KeyProcessor();
+	private keyChallengeGenerator = new KeyChallengeGenerator();
+
+	constructor(){}
+
+	public startKeyGame() {
 
 	const gameTimer = timer(TIME_WINDOW, TIME_WINDOW);
 
 	let difficulty = 5; 
-	let curKeyGame = new KeyGame(difficulty);
+	let curKeyGame = new KeyGameRound(difficulty, this.keyChallengeGenerator, this.keyprocessor);
     let subscription = gameTimer.subscribe(
 		(window) => {
 			//calculate outcom and death
@@ -51,7 +59,7 @@ export function startKeyGame() {
 			} else {
 				difficulty = difficulty + DIFFICULTY_INCREASE;
 				//get and register next challenges
-				curKeyGame = new KeyGame(Math.floor(difficulty));
+				curKeyGame = new KeyGameRound(Math.floor(difficulty), this.keyChallengeGenerator, this.keyprocessor);
 				console.log("new game started");
 			}
 
@@ -59,18 +67,17 @@ export function startKeyGame() {
 	);
 	
 }
+}
 
-const keyprocessor = new KeyProcessor();
-const keyChallengeGenerator = new KeyChallengeGenerator();
 
-export class KeyGame{
+export class KeyGameRound{
 
 	private challengeSubjects : Map<string, Subject<string>>; 
 	private challengesToSolve : KeyChallengeSet;
 	private targetNumber: number;
 	private solvedNumber: number; 
 	
-	constructor(difficulty: number){
+	constructor(difficulty: number, keyChallengeGenerator : KeyChallengeGenerator, keyprocessor: KeyProcessor){
 		this.solvedNumber = 0;
 		this.challengeSubjects = new Map<string, Subject<string>>();
 		
