@@ -113,8 +113,8 @@ export class VirusController {
     moveVirus(id: number, x: number, y: number) {
         let virus = document.getElementById("virus"+id);
         if (virus) {
-            virus.style.top  = ((y * virusSize) +2) + "px";
-            virus.style.left = ((x * virusSize) +2) + "px";
+            virus.style.top  = ((y * virusSize)) + "px";
+            virus.style.left = ((x * virusSize)) + "px";
         }
     }
 
