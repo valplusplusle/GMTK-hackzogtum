@@ -101,6 +101,17 @@ export class VirusController {
         document.getElementById("virus"+id)?.classList.add("shown");  
     }
 
+    showExplosion(id:number){
+        document.getElementById("virus"+id)?.classList.remove("virus"+id);
+        document.getElementById("virus"+id)?.classList.add("explosion0");
+        setTimeout(this.hideVirusAndExplosion, 1000, id);
+    }
+    hideVirusAndExplosion(id: number) {  
+        document.getElementById("virus"+id)?.classList.remove("explosion0");
+        document.getElementById("virus"+id)?.classList.add("hidden");
+        document.getElementById("virus"+id)?.classList.remove("shown");
+        document.getElementById("virus"+id)?.classList.add("virus"+id);
+    }
 
     public async clickedVirus(event:any) {
         this.addPoints();
@@ -110,7 +121,7 @@ export class VirusController {
         console.log("Clicked on virus " + virusId);
         let pos = this.index.get(virusId);
         if (pos) {
-            this.delVirus(virusId, pos);
+            this.killVirus(virusId, pos);
         }
 
         if (this.index.size == 0) {
@@ -152,13 +163,20 @@ export class VirusController {
 
         this.configMoveTimer(this.index.size);
     }
+    
+    killVirus(id: number, pos: Position) {
+        const [x, y] = pos;
+        this.index.delete(id);
+        this.matrix[x][y] = 0;
+        this.configMoveTimer(this.index.size);
+        this.showExplosion(id);
+    }
 
     delVirus(id: number, pos: Position) {
         const [x, y] = pos;
         this.index.delete(id);
         this.matrix[x][y] = 0;
         this.hideVirus(id);
-
         this.configMoveTimer(this.index.size);
     }
 
