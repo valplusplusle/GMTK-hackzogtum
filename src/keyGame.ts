@@ -2,7 +2,7 @@ import { KeyChallengeGenerator, KeyChallengeSet, KeyChallenge, KeyAction } from 
 import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE, DIFFICULTY_CRITICAL_THRESH, BLINK_DURATION_MS, AVAIL_KEYS } from './config';
 import { timer, Subject, of, Subscription } from 'rxjs';
 import './changeKeyUiFunctions';
-import { letKeyGlow, stopKeyGlow, stopKeyErrorGlow, keyIsReleased, keyIsPressed } from './changeKeyUiFunctions';
+import { letKeyGlow, stopKeyGlow, stopKeyErrorGlow, keyIsReleased, keyIsPressed, letKeyErrorGlow } from './changeKeyUiFunctions';
 
 
 class KeyProcessor {
@@ -11,6 +11,9 @@ class KeyProcessor {
 	private subjectMap: Map<string, Subject<string>> = new Map();
 	
 	constructor() {
+	}
+
+	init(){
 		document.body.addEventListener("keydown", (e) => this.dispatcherFun(e));
 		document.body.addEventListener("keyup", (e) => this.dispatcherFun(e));
 	}
@@ -21,23 +24,31 @@ class KeyProcessor {
 
 	private dispatcherFun(e: KeyboardEvent) {
 
-		if (e.type == 'keydown' && ! this.keyMem.has(e.keyCode)) {
+		if (e.type === 'keydown' && ! this.keyMem.has(e.keyCode)) {
 			this.keyMem.add(e.keyCode);
 			keyIsPressed(String.fromCharCode(e.keyCode));
+
 		    //wel will need this for holding
 
-		} else if (e.type == 'keyup') {
+		} else if (e.type === 'keyup') {
 			this.keyMem.delete(e.keyCode);
-			keyIsReleased(String.fromCharCode(e.keyCode));
 
 			//SPAM challenges are only interessted in keyup 
 			let stringkey : string = String.fromCharCode(e.keyCode);
 			let sub = this.subjectMap.get(stringkey);
+
+			//show error keys
+			if(!sub){
+				letKeyErrorGlow(stringkey);
+				setTimeout(() => {
+					stopKeyErrorGlow(stringkey);
+				}, 200);
+			}
 			sub?.next();
+			keyIsReleased(String.fromCharCode(e.keyCode));
+
 		}
-
 	}
-
 }
 
 
@@ -60,6 +71,7 @@ export class KeyGame{
 	public startKeyGame() {
 
 	const gameTimer = timer(TIME_WINDOW, TIME_WINDOW);
+	this.keyprocessor.init();
 
 	let difficulty = 5; 
 	let curKeyGame = new KeyGameRound(difficulty, this.keyChallengeGenerator, this.keyprocessor);
