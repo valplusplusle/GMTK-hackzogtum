@@ -1,6 +1,8 @@
 import { KeyChallengeGenerator, KeyChallengeSet, KeyChallenge, KeyAction } from './keyChallengeGenerator';
-import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE, DIFFICULTY_CRITICAL_THRESH } from './config';
-import { timer, Subject } from 'rxjs';
+import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE, DIFFICULTY_CRITICAL_THRESH, BLINK_DURATION_MS, AVAIL_KEYS } from './config';
+import { timer, Subject, of, Subscription } from 'rxjs';
+import './changeKeyUiFunctions';
+import { letKeyGlow, stopKeyGlow, stopKeyErrorGlow, keyIsReleased } from './changeKeyUiFunctions';
 
 
 class KeyProcessor {
@@ -92,8 +94,10 @@ export class KeyGameRound{
 	private challengesToSolve : KeyChallengeSet;
 	private targetNumber: number;
 	private solvedNumber: number; 
+	private subsToStop : Array<Subscription>;
 	
 	constructor(difficulty: number, keyChallengeGenerator : KeyChallengeGenerator, keyprocessor: KeyProcessor){
+		this.subsToStop = new Array();
 		this.solvedNumber = 0;
 		this.challengeSubjects = new Map<string, Subject<string>>();
 		
@@ -106,12 +110,28 @@ export class KeyGameRound{
 			let subject = new Subject<string>();
 			this.challengeSubjects.set(keyChall.key, subject);
 
+			if(keyChall.action==KeyAction.SPAM) {
+				let blink_subscription = timer(BLINK_DURATION_MS, BLINK_DURATION_MS).subscribe((i) => {
+					if(i%2==0){
+						letKeyGlow(keyChall.key); 
+					}else{
+						stopKeyGlow(keyChall.key);
+					}
+				});
+				keyChall.subs.push(blink_subscription);
+				this.subsToStop.push(blink_subscription);
+			}
+			 
+
 			subject.subscribe((s) => {
 				if(keyChall.action === KeyAction.SPAM){
 					keyChall.current += 1;
 					if(keyChall.current >= keyChall.target){
 						console.log(`solved`);
 						this.solvedNumber++;
+						//end subs if nesc
+						keyChall.subs.forEach((s)=>s.unsubscribe());
+						stopKeyGlow(keyChall.key);
 					}
 				}
 			})
@@ -119,7 +139,23 @@ export class KeyGameRound{
 		keyprocessor.registerNewSubjects(this.challengeSubjects);
 	}
 
+	private cleanup(){
+		//stop remaining subs
+		this.subsToStop.forEach((s)=>{
+			s.unsubscribe();
+		});
+
+		//clear all maybe set keys
+		AVAIL_KEYS.forEach((k) => {
+			stopKeyGlow(k);
+			stopKeyErrorGlow(k);
+			keyIsReleased(k);
+		});
+	}
+
 	solved(): boolean{
+		//if this gets called we should clean up
+		this.cleanup();
 		return PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE < (this.solvedNumber / this.targetNumber);
 	}
 

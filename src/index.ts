@@ -1,5 +1,5 @@
 import {KeyGame} from './keyGame';
-import {playBackgroundMusic} from './sound';
+import {playBackgroundMusic, stopBackgroundMusic} from './sound';
 import {VirusController} from './virusSpawner';
 
 import '../assets/style/style.css';
@@ -8,7 +8,19 @@ import '../assets/style/virus.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-let vc = new VirusController();
+const vc = new VirusController();
+const keygame = new KeyGame();
+
+keygame.registerEndOfGameCB(()=>{
+    console.log("you fucked up");
+    stopBackgroundMusic();
+    alert("you fucked up - the system is out of control ;)")
+}); 
+
+keygame.registerGettinCriticalCB(()=>{
+    console.log("it's gettin harder")
+}); 
+
 
 
 function registerCBs(){ 
@@ -25,11 +37,12 @@ function registerCBs(){
 	if (startGameBtn) {
 		startGameBtn.onclick = (e => {
 			playBackgroundMusic();
+			startGame();
+
 			let splash = document.getElementById("splash");
 			if (splash) {
 				splash.style.display = "none";
 			}
-			startGame();
 		});
 	}
 }

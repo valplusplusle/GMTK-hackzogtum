@@ -1,4 +1,5 @@
 import {MAX_TARGET_TIME, MIN_TARGET_TIME, MAX_SPAM_NBR, MIN_SPAM_NBR, AVAIL_KEYS} from './config';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 export enum KeyAction {
     HOLD,
@@ -11,6 +12,7 @@ export type KeyChallenge  = {
     action : KeyAction 
     target: number
     current : number
+    subs : Array<Subscription>
 }
 
 export type KeyChallengeSet = Array<KeyChallenge>
@@ -71,6 +73,7 @@ export class KeyChallengeGenerator{
             action: action,
             target: target,
             current: 0,
+            subs : new Array()
         }
     }
 
