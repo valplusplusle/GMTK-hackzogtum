@@ -16,7 +16,6 @@ export class KeyProcessor {
 
 	public registerNewSubjects(subjectMap: Map<string, Subject<string>>) {
 		this.subjectMap = subjectMap;
-		console.log(`subs after reg: ${this.subjectMap.keys.length}`);
 	}
 
 	private dispatcherFun(e: KeyboardEvent) {
@@ -31,12 +30,6 @@ export class KeyProcessor {
 			//SPAM challenges are only interessted in keyup 
 			let stringkey : string = String.fromCharCode(e.keyCode);
 			let sub = this.subjectMap.get(stringkey);
-
-			if(sub){
-				console.log(`sub is there`);
-			}else{
-				console.log(`sub undefined ${sub}`);
-			}
 
 			sub?.next();
 
@@ -57,8 +50,8 @@ export function startKeyGame() {
     let subscription = gameTimer.subscribe(
 		(window) => {
 			//calculate outcom and death
-			if(!curKeyGame.solved()){
-				console.log("end");
+			if(window > 1 && !curKeyGame.solved()){
+				console.log("end of game");
 				subscription.unsubscribe();	
 			}
 
@@ -88,34 +81,32 @@ export class KeyGame{
 		
 		this.challengesToSolve = keyChallengeGenerator.getChallenge(difficulty);
 		//difficulty is adjusted so get the actual length
-		this.targetNumber = this.challengesToSolve.keys.length;
+		this.targetNumber = this.challengesToSolve.length;
+		console.log(`number challenges ${this.targetNumber}`);
 
-		console.log(`challenges  to solve: ${this.challengesToSolve.keys.length}`);
 
-		this.challengesToSolve.keys.forEach((keyChall: KeyChallenge)=>{
+
+		this.challengesToSolve.forEach((keyChall: KeyChallenge)=>{
 			let subject = new Subject<string>();
 			this.challengeSubjects.set(keyChall.key, subject);
 
-			console.log(`keychallkey : ${keyChall.key} `);
-			console.log(`challenge subjectslen directly in loop: ${this.challengeSubjects.keys.length}`);
-			console.log(`challenge subjectslen directly in loop: ${this.challengeSubjects.entries.length}`);
-
 			subject.subscribe((s) => {
-				if(keyChall.action == KeyAction.SPAM){
+				console.log(`hit key is ${keyChall.key}`);
+				console.log(`hit count ${keyChall.current}`);
+				console.log(`hit target ${keyChall.target}`);
+				if(keyChall.action === KeyAction.SPAM){
 					keyChall.current += 1;
-					if(keyChall.current == keyChall.target){
-						console.log(`keyevent ${keyChall.key} saw keyup`);
+					if(keyChall.current >= keyChall.target){
+						console.log(`solved`);
 						this.solvedNumber++;
 					}
 				}
 			})
 		})
-		console.log(`challenge subjects: ${this.challengeSubjects.keys.length}`);
 		keyprocessor.registerNewSubjects(this.challengeSubjects);
 	}
 
 	solved(): boolean{
-		return true;
 		return PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE < (this.solvedNumber / this.targetNumber);
 	}
 

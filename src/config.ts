@@ -12,7 +12,7 @@ export const MAX_TARGET_TIME : number = 500;
 export const MIN_TARGET_TIME : number = 4000; 
 
 //available keys which are used to gen challenges
-export const AVAIL_KEYS = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
+export const AVAIL_KEYS = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
 
 export const PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE :number = .3;

@@ -13,9 +13,8 @@ export type KeyChallenge  = {
     current : number
 }
 
-export type KeyChallengeSet = {
-    keys: Array<KeyChallenge>
-}
+export type KeyChallengeSet = Array<KeyChallenge>
+
 
 export type KeyChallengeDifficulty = number;
 
@@ -38,18 +37,15 @@ export class KeyChallengeGenerator{
             difficulty = AVAIL_KEYS.length - 2;
         }
 
-        let res = {
-            keys : new Array<KeyChallenge>()
-        }
+        let res = new Array<KeyChallenge>();
 
         this.keyDrawPool = Array.from(AVAIL_KEYS);
 
         let nbr = this.randInt(2,difficulty);
         for(let i=0; i<nbr; i++){
-            res.keys.push(this.genKeyChallenge());
+            res.push(this.genKeyChallenge());
         }
 
-        console.log(`generated cahlle ${res.keys.length}`);
         return res; 
     }
 
