@@ -37,11 +37,8 @@
 
 .startButton {
     background-color: chartreuse !important;
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, -50%);
+    margin-top: 50px;
+    margin-left: 440px;
 }
 
 .backgroundImage {
@@ -127,4 +124,13 @@
 .textOfProgressBars {
     color: #ff39ce;
     text-align: center;
+}
+
+.startText {
+    color: #ff39ce;
+    border: solid;
+    border-color: #ff39ce;
+    margin-top: 170px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
