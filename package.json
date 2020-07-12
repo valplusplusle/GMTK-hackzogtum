@@ -4,7 +4,7 @@
   "description": "Cool game",
   "private": true,
   "scripts": {
-    "devserver": "webpack-dev-server --mode development",
+    "devserver": "webpack-dev-server --mode development --host 0.0.0.0",
     "build-dev": "webpack --mode development && cp index.html dist && cp -R assets dist/"
   },
   "author": "Tobias Wich <tobias.wich@ecsec.de>",

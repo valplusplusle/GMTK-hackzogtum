@@ -2,7 +2,7 @@ import { KeyChallengeGenerator, KeyChallengeSet, KeyChallenge, KeyAction } from 
 import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE, DIFFICULTY_CRITICAL_THRESH, BLINK_DURATION_MS, AVAIL_KEYS } from './config';
 import { timer, Subject, of, Subscription } from 'rxjs';
 import './changeKeyUiFunctions';
-import { letKeyGlow, stopKeyGlow, stopKeyErrorGlow, keyIsReleased } from './changeKeyUiFunctions';
+import { letKeyGlow, stopKeyGlow, stopKeyErrorGlow, keyIsReleased, keyIsPressed } from './changeKeyUiFunctions';
 
 
 class KeyProcessor {
@@ -23,10 +23,12 @@ class KeyProcessor {
 
 		if (e.type == 'keydown' && ! this.keyMem.has(e.keyCode)) {
 			this.keyMem.add(e.keyCode);
+			keyIsPressed(String.fromCharCode(e.keyCode));
 		    //wel will need this for holding
 
 		} else if (e.type == 'keyup') {
 			this.keyMem.delete(e.keyCode);
+			keyIsReleased(String.fromCharCode(e.keyCode));
 
 			//SPAM challenges are only interessted in keyup 
 			let stringkey : string = String.fromCharCode(e.keyCode);
