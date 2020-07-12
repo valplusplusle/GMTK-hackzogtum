@@ -1,4 +1,3 @@
-import * as rxjs from 'rxjs';
 import { KeyChallengeGenerator, KeyChallengeSet, KeyChallenge, KeyAction } from './keyChallengeGenerator';
 import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE } from './config';
 import { timer, Subject } from 'rxjs';
@@ -30,11 +29,7 @@ export class KeyProcessor {
 			//SPAM challenges are only interessted in keyup 
 			let stringkey : string = String.fromCharCode(e.keyCode);
 			let sub = this.subjectMap.get(stringkey);
-
 			sub?.next();
-
-//			this.subjectMap.get(stringkey)?.next();
-
 		}
 
 	}
@@ -50,15 +45,15 @@ export function startKeyGame() {
     let subscription = gameTimer.subscribe(
 		(window) => {
 			//calculate outcom and death
-			if(window > 1 && !curKeyGame.solved()){
+			if(!curKeyGame.solved()){
 				console.log("end of game");
 				subscription.unsubscribe();	
+			} else {
+				difficulty = difficulty + DIFFICULTY_INCREASE;
+				//get and register next challenges
+				curKeyGame = new KeyGame(Math.floor(difficulty));
+				console.log("new game started");
 			}
-
-			difficulty = difficulty + DIFFICULTY_INCREASE;
-			//get and register next challenges
-			curKeyGame = new KeyGame(Math.floor(difficulty));
-			console.log("new game started");
 
 		}
 	);
@@ -84,16 +79,11 @@ export class KeyGame{
 		this.targetNumber = this.challengesToSolve.length;
 		console.log(`number challenges ${this.targetNumber}`);
 
-
-
 		this.challengesToSolve.forEach((keyChall: KeyChallenge)=>{
 			let subject = new Subject<string>();
 			this.challengeSubjects.set(keyChall.key, subject);
 
 			subject.subscribe((s) => {
-				console.log(`hit key is ${keyChall.key}`);
-				console.log(`hit count ${keyChall.current}`);
-				console.log(`hit target ${keyChall.target}`);
 				if(keyChall.action === KeyAction.SPAM){
 					keyChall.current += 1;
 					if(keyChall.current >= keyChall.target){
