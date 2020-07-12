@@ -7,6 +7,10 @@ export function playBackgroundMusic() {
 	}
 }
 
+export function playGameOver() {
+	var audio = new Audio('./assets/audio/effects/GameOver.mp3');
+	audio.play();
+}
 export function stopBackgroundMusic() {
 	console.log("stop bg music called.");
 	let audio = document.getElementById("bgaudio");

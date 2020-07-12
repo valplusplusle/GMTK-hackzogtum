@@ -1,5 +1,5 @@
 import {KeyGame} from './keyGame';
-import {playBackgroundMusic, stopBackgroundMusic} from './sound';
+import {playBackgroundMusic, stopBackgroundMusic, playGameOver} from './sound';
 import {VirusController} from './virusSpawner';
 
 import '../assets/style/style.css';
@@ -42,6 +42,7 @@ function startGame() {
         console.log("you fucked up");
 		vc.stop();
         stopBackgroundMusic();
+		playGameOver();
         document.getElementById("endscreen")?.classList.remove("endscreen--hidden");
 		document.getElementById("endscreen")?.classList.add("endscreen--visible");
 		let scoreField = document.getElementById("endscoreval");
