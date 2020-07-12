@@ -1,5 +1,5 @@
 import { KeyChallengeGenerator, KeyChallengeSet, KeyChallenge, KeyAction } from './keyChallengeGenerator';
-import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE } from './config';
+import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE, DIFFICULTY_CRITICAL_THRESH } from './config';
 import { timer, Subject } from 'rxjs';
 
 
@@ -41,8 +41,17 @@ class KeyProcessor {
 export class KeyGame{
 	private keyprocessor = new KeyProcessor();
 	private keyChallengeGenerator = new KeyChallengeGenerator();
+	private end?: () => void;
+	private crit?: () => void;
 
 	constructor(){}
+
+    registerEndOfGameCB(cb : ()=>void) {
+		this.end = cb;
+    }
+    registerGettinCriticalCB(cb : ()=>void) {
+		this.crit = cb;
+	}
 
 	public startKeyGame() {
 
@@ -54,10 +63,17 @@ export class KeyGame{
 		(window) => {
 			//calculate outcom and death
 			if(!curKeyGame.solved()){
-				console.log("end of game");
+				if(this.end){
+					this.end();
+				}
 				subscription.unsubscribe();	
 			} else {
 				difficulty = difficulty + DIFFICULTY_INCREASE;
+				if(Math.floor(difficulty) > DIFFICULTY_CRITICAL_THRESH){
+					if(this.crit){
+						this.crit();
+					}
+				}
 				//get and register next challenges
 				curKeyGame = new KeyGameRound(Math.floor(difficulty), this.keyChallengeGenerator, this.keyprocessor);
 				console.log("new game started");
