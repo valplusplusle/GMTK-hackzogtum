@@ -75,7 +75,7 @@
     background-image: url(../images/gameBackground.png);
     background-size: cover;
     border: solid;
-    border-color: black;
+    border-color: #ff39ce;
 }
 
 .splash {
@@ -90,7 +90,7 @@
     overflow: hidden;
     background-size: cover;
     border: solid;
-    border-color: black;
+    border-color: #ff39ce;
 }
 
 .volumeControl {
@@ -106,8 +106,7 @@
 }
 
 .backgroundImage {
-    background-image: url(../images/hacker-2300772_1920.jpg);
-    background-size: inherit;
+    background-color: black;
 }
 
 .screen {
@@ -126,7 +125,6 @@
     left: 5px;
     background-size: contain;
     background-repeat: no-repeat;
-    z-index: 999999;
 }
 
 .screenScore {
