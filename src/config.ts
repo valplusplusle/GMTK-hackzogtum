@@ -19,3 +19,5 @@ export const PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE :number = .3;
 
 export const DIFFICULTY_INCREASE = .3
 export const DIFFICULTY_CRITICAL_THRESH = 8; 
+
+export const BLINK_DURATION_MS = 100;

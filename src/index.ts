@@ -21,13 +21,12 @@ function registerCBs(){
 }
 
 window.localStorage.setItem('points', '0'); // init game with 0 Points
+registerCBs();
 playBackgroundMusic();
 
 const keygame = new KeyGame();
-keygame.registerEndOfGameCB(()=>{console.log("you fucked up")}); 
+keygame.registerEndOfGameCB(()=>{console.log("you fucked up"); alert("you fucked up")}); 
 keygame.registerGettinCriticalCB(()=>{console.log("it's gettin harder")}); 
-
 keygame.startKeyGame();
 
 spawnRandomViruses();
-registerCBs();
