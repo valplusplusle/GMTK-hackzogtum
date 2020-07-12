@@ -7,6 +7,23 @@
     </head>
     <body class="backgroundImage">
         <div id="gameRegion" class="gameRegion">
+            <div id=endscreen class="endscreen endscreen--hidden">
+                <div class="endscrenn-text">
+                    GAME OVER <br>
+                    YOU'RE OUT OF CONTROL<br>
+                    Thx for playing!
+                </div>
+                <div class="endscreen-logos d-flex justify-content-between">
+                    <img src="assets/images/test.gif"></img>
+                    <div class="endscreen-endscore">
+                        <p>SCORE:</p>
+                        <p id=endscoreval>0</p>
+                    </div>
+                    <img src="assets/images/gmtk_logo.png"></img>
+                </div>
+
+                <button id="restartbutton" class="btn" onclick="window.location.href=window.location.href">Restart game</button>
+            </div>
 
             <div class="volumeControl">
                 <button onclick="document.getElementById('bgaudio').volume+=0.1">Volume Up</button>

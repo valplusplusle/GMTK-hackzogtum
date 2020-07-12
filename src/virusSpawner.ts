@@ -19,6 +19,9 @@ export class VirusController {
         this.matrix = this.newMatrix();
     }
 
+	getScore(): string {
+        return `${this.points}`;
+	}
     newMatrix() {
         let m = new Array(15);
         for (var i = 0; i < m.length; i++) {
