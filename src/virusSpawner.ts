@@ -8,7 +8,8 @@ function randomIntFromInterval(min: number, max: number) { // min and max includ
 
 // the screen has 15x10 virus pixels (vixels)
 const virusSize = 30;
-const moveIntervalTime = 2000;
+const MOVE_INTERVAL_BASE = 2500;
+const MOVE_INTERVAL_MIN  = 500;
 const FIELD_MAX_X = 15;
 const FIELD_MAX_Y = 10;
 
@@ -31,9 +32,16 @@ export class VirusController {
     private matrix: Array<Array<number>>;
     private points = 0;
     private moveInterval: number | undefined;
+    private moveIntervalTime = MOVE_INTERVAL_BASE;
 
     constructor() {
         this.matrix = this.newMatrix();
+    }
+
+    public setDifficulty(level: number) {
+        let diff = MOVE_INTERVAL_BASE - (level * 100);
+        diff = (diff > MOVE_INTERVAL_MIN) ? diff : MOVE_INTERVAL_MIN;
+        this.moveIntervalTime = diff;
     }
 
 	getScore(): string {
@@ -62,7 +70,7 @@ export class VirusController {
         this.stopMoveTimer();
 
         if (numVirus > 0) {
-            this.moveInterval = window.setInterval(() => this.migrateVirus(), moveIntervalTime / numVirus);
+            this.moveInterval = window.setInterval(() => this.migrateVirus(), this.moveIntervalTime / numVirus);
         }
     }
 

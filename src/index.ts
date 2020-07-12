@@ -71,8 +71,10 @@ function startGame() {
 
 	if (isHCMode()) {
 		selectHcTrack();
+		vc.setDifficulty(15);
 	} else {
 		selectNormalTrack();
+		vc.setDifficulty(0);
 	}
 	
 	playBackgroundMusic();
