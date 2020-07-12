@@ -52,10 +52,19 @@
 .screen {
     height: 300px;
     width: 460px;
+    margin-left: 80px;
+    margin-top: 50px;
+}
+
+.screenPic {
+    background-image: url(../images/GC_Bildschirm_05_aus_01.png);
+    height: 405px;
+    width: 670px;
     position: absolute;
-    background-color: black;
-    left: 110px;
-    top: 40px;
+    left: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 999999;
 }
 
 .screenScore {
@@ -68,12 +77,12 @@
 
 .keyboard {
     height: 150px;
-    width: 655px;
+    width: 710px;
     position: absolute;
-    background-color: black;
-    left: 10px;
     top: 400px;
     padding: 10px;
+    background-image: url(../images/GC_tastHinterg_02.png);
+    background-size: cover;
 }
 
 .scoreBoard {
