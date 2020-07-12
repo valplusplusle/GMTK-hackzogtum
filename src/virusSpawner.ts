@@ -74,10 +74,12 @@ export class VirusController {
     spawnRandomViruses() {
         console.log("Spawning new Viruses.");
         let virusNumber = [];
-        for (let i = 0; i < 7; i++) {
-            var random_boolean = Math.random() >= 0.5;
-            if (random_boolean) {
-                virusNumber.push(i);
+        while (virusNumber.length == 0) {
+            for (let i = 0; i < 7; i++) {
+                var random_boolean = Math.random() >= 0.5;
+                if (random_boolean) {
+                    virusNumber.push(i);
+                }
             }
         }
 
