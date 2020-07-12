@@ -2,7 +2,9 @@ import { KeyChallengeGenerator, KeyChallengeSet, KeyChallenge, KeyAction } from 
 import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE, DIFFICULTY_CRITICAL_THRESH, BLINK_DURATION_MS, AVAIL_KEYS } from './config';
 import { timer, Subject, of, Subscription } from 'rxjs';
 import './changeKeyUiFunctions';
+import './progessBarFuncs';
 import { letKeyGlow, stopKeyGlow, stopKeyErrorGlow, keyIsReleased, keyIsPressed, letKeyErrorGlow } from './changeKeyUiFunctions';
+import { setTimeWindow } from './progessBarFuncs';
 
 
 class KeyProcessor {
@@ -51,8 +53,6 @@ class KeyProcessor {
 	}
 }
 
-
-
 export class KeyGame{
 	private keyprocessor = new KeyProcessor();
 	private keyChallengeGenerator = new KeyChallengeGenerator();
@@ -70,6 +70,7 @@ export class KeyGame{
 
 	public startKeyGame() {
 
+
 	const gameTimer = timer(TIME_WINDOW, TIME_WINDOW);
 	this.keyprocessor.init();
 
@@ -84,6 +85,7 @@ export class KeyGame{
 				}
 				subscription.unsubscribe();	
 			} else {
+
 				difficulty = difficulty + DIFFICULTY_INCREASE;
 				if(Math.floor(difficulty) > DIFFICULTY_CRITICAL_THRESH){
 					if(this.crit){
@@ -109,9 +111,20 @@ export class KeyGameRound{
 	private targetNumber: number;
 	private solvedNumber: number; 
 	private subsToStop : Array<Subscription>;
+
+	animTimeWindowProgressBar(){
+		setTimeWindow(0);
+		let sub = timer(0, 200).subscribe((v)=>{
+			let perCent = (v/(TIME_WINDOW/200))*100;
+			console.log(`set progress to ${perCent}`)
+			setTimeWindow(perCent);
+		});
+		this.subsToStop.push(sub);
+	}
 	
 	constructor(difficulty: number, keyChallengeGenerator : KeyChallengeGenerator, keyprocessor: KeyProcessor){
 		this.subsToStop = new Array();
+		this.animTimeWindowProgressBar();
 		this.solvedNumber = 0;
 		this.challengeSubjects = new Map<string, Subject<string>>();
 		
