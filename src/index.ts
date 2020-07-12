@@ -51,6 +51,10 @@ function startGame() {
 	}
 
 	const keygame = new KeyGame();
+	if(isHCMode()){
+		keygame.setHcMode()
+	}
+
 	keygame.registerEndOfGameCB(()=>{
         //console.log("you fucked up");
 		vc.stop();

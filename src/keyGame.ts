@@ -1,5 +1,5 @@
 import { KeyChallengeGenerator, KeyChallengeSet, KeyChallenge, KeyAction } from './keyChallengeGenerator';
-import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE, DIFFICULTY_CRITICAL_THRESH, BLINK_DURATION_MS, AVAIL_KEYS } from './config';
+import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE, DIFFICULTY_CRITICAL_THRESH, BLINK_DURATION_MS, AVAIL_KEYS, TIME_WINDOW_HC, DIFFICULTY_INCREASE_HC } from './config';
 import { timer, Subject, of, Subscription } from 'rxjs';
 import './changeKeyUiFunctions';
 import { letKeyGlow, stopKeyGlow, stopKeyErrorGlow, keyIsReleased, keyIsPressed, letKeyErrorGlow } from './changeKeyUiFunctions';
@@ -58,6 +58,10 @@ export class KeyGame{
 	private end?: () => void;
 	private crit?: () => void;
 
+	private innerTimeWindow = TIME_WINDOW
+	private innerDifficultyAdjust = DIFFICULTY_INCREASE;
+	private isHC: boolean = false; 
+
 	constructor(){}
 
     registerEndOfGameCB(cb : ()=>void) {
@@ -67,39 +71,45 @@ export class KeyGame{
 		this.crit = cb;
 	}
 
+
+	public setHcMode(){
+		this.innerTimeWindow = TIME_WINDOW_HC;
+		this.innerDifficultyAdjust = DIFFICULTY_INCREASE_HC;
+		this.isHC = true;
+	}
+
 	public startKeyGame() {
 
+		const gameTimer = timer(this.innerTimeWindow, this.innerTimeWindow);
+		this.keyprocessor.init();
 
-	const gameTimer = timer(TIME_WINDOW, TIME_WINDOW);
-	this.keyprocessor.init();
-
-	let difficulty = 5; 
-	let curKeyGame = new KeyGameRound(difficulty, this.keyChallengeGenerator, this.keyprocessor);
-    let subscription = gameTimer.subscribe(
-		(window) => {
-			//calculate outcom and death
-			if(!curKeyGame.solved()){
-				if(this.end){
-					this.end();
-				}
-				subscription.unsubscribe();	
-			} else {
-
-				difficulty = difficulty + DIFFICULTY_INCREASE;
-				if(Math.floor(difficulty) > DIFFICULTY_CRITICAL_THRESH){
-					if(this.crit){
-						this.crit();
+		let difficulty = 5; 
+		let curKeyGame = new KeyGameRound(this.isHC, difficulty, this.keyChallengeGenerator, this.keyprocessor);
+ 	    let subscription = gameTimer.subscribe(
+			(window) => {
+				//calculate outcom and death
+				if(!curKeyGame.solved()){
+					if(this.end){
+						this.end();
 					}
-				}
-				//get and register next challenges
-				curKeyGame = new KeyGameRound(Math.floor(difficulty), this.keyChallengeGenerator, this.keyprocessor);
-				//console.log("new game started");
-			}
+					subscription.unsubscribe();	
+				} else {
 
-		}
-	);
+					difficulty = difficulty + this.innerDifficultyAdjust;
+					if(Math.floor(difficulty) > DIFFICULTY_CRITICAL_THRESH){
+						if(this.crit){
+							this.crit();
+						}
+					}
+					//get and register next challenges
+					curKeyGame = new KeyGameRound(this.isHC, Math.floor(difficulty), this.keyChallengeGenerator, this.keyprocessor);
+					//console.log("new game started");
+				}
+
+			}
+		);
 	
-}
+	}
 }
 
 
@@ -111,19 +121,22 @@ export class KeyGameRound{
 	private solvedNumber: number; 
 	private subsToStop : Array<Subscription>;
 
-	animTimeWindowProgressBar(){
+	animTimeWindowProgressBar(hc:boolean){
 		setTimeWindow(0);
 		let sub = timer(0, 200).subscribe((v)=>{
 			let perCent = (v/(TIME_WINDOW/200))*100;
+			if(hc){
+				let perCent = (v/(TIME_WINDOW/200))*100;
+			}
 			//console.log(`set progress to ${perCent}`)
 			setTimeWindow(perCent);
 		});
 		this.subsToStop.push(sub);
 	}
 	
-	constructor(difficulty: number, keyChallengeGenerator : KeyChallengeGenerator, keyprocessor: KeyProcessor){
+	constructor(hc: boolean, difficulty: number, keyChallengeGenerator : KeyChallengeGenerator, keyprocessor: KeyProcessor){
 		this.subsToStop = new Array();
-		this.animTimeWindowProgressBar();
+		this.animTimeWindowProgressBar(hc);
 		this.updateProgressProgressBar();
 		this.solvedNumber = 0;
 		this.challengeSubjects = new Map<string, Subject<string>>();
