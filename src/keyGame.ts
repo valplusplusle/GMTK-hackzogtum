@@ -2,9 +2,8 @@ import { KeyChallengeGenerator, KeyChallengeSet, KeyChallenge, KeyAction } from 
 import { TIME_WINDOW, DIFFICULTY_INCREASE, PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE, DIFFICULTY_CRITICAL_THRESH, BLINK_DURATION_MS, AVAIL_KEYS } from './config';
 import { timer, Subject, of, Subscription } from 'rxjs';
 import './changeKeyUiFunctions';
-import './progessBarFuncs';
 import { letKeyGlow, stopKeyGlow, stopKeyErrorGlow, keyIsReleased, keyIsPressed, letKeyErrorGlow } from './changeKeyUiFunctions';
-import { setTimeWindow } from './progessBarFuncs';
+import { setProgress, setTimeWindow } from './progessBarFuncs';
 
 
 class KeyProcessor {
@@ -125,6 +124,7 @@ export class KeyGameRound{
 	constructor(difficulty: number, keyChallengeGenerator : KeyChallengeGenerator, keyprocessor: KeyProcessor){
 		this.subsToStop = new Array();
 		this.animTimeWindowProgressBar();
+		this.updateProgressProgressBar();
 		this.solvedNumber = 0;
 		this.challengeSubjects = new Map<string, Subject<string>>();
 		
@@ -150,7 +150,7 @@ export class KeyGameRound{
 			}
 			 
 
-			subject.subscribe((s) => {
+			let sub = subject.subscribe((s) => {
 				if(keyChall.action === KeyAction.SPAM){
 					keyChall.current += 1;
 					if(keyChall.current >= keyChall.target){
@@ -159,6 +159,9 @@ export class KeyGameRound{
 						//end subs if nesc
 						keyChall.subs.forEach((s)=>s.unsubscribe());
 						stopKeyGlow(keyChall.key);
+						this.updateProgressProgressBar();
+						sub.unsubscribe();
+						
 					}
 				}
 			})
@@ -178,6 +181,11 @@ export class KeyGameRound{
 			stopKeyErrorGlow(k);
 			keyIsReleased(k);
 		});
+	}
+
+	updateProgressProgressBar() {
+		let progress = Math.floor((this.solvedNumber / this.targetNumber)*100/PERCENT_OF_TO_SOLVE_CHALLENGS_TO_NOT_DIE);
+		setProgress(progress ? progress : 0);
 	}
 
 	solved(): boolean{
