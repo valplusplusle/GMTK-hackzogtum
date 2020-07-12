@@ -17,7 +17,18 @@ function registerCBs(){
                 clickedVirus(event);
             };
         }
-    }
+	}
+	
+	let startGameBtn = document.getElementById("startGameBtn");
+	if (startGameBtn) {
+		startGameBtn.onclick = (e => {
+			playBackgroundMusic();
+			let splash = document.getElementById("splash");
+			if (splash) {
+				splash.style.display = "none";
+			}
+		});
+	}
 }
 
 window.localStorage.setItem('points', '0'); // init game with 0 Points

@@ -67,6 +67,24 @@
                 <div id="screenScore" class="screenScore"></div>
             </div>
         </div>
+
+        <div>
+            <audio id="bgaudio" loop preload="auto">
+                <source src="assets/audio/music/Theme3.mp3" type="audio/mp3">
+            </audio>
+            <!-- TODO: style volume controls -->
+            <div>
+                <button onclick="document.getElementById('bgaudio').volume+=0.1">Volume Up</button>
+                <button onclick="document.getElementById('bgaudio').volume-=0.1">Volume Down</button>
+                <button onclick="let e = document.getElementById('bgaudio'); e.muted = !e.muted">Mute</button>
+            </div> 
+        </div>
+
+        <!-- TODO: make splash screen nice and overlay the game -->
+        <div id="splash">
+            <button id="startGameBtn" onclick="sound.playBackgroundMusic();">Start game</button>
+        </div>
+
     </body>
     <script type="text/javascript" src="bundle.js"></script>
 </html>
