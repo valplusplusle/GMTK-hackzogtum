@@ -121,13 +121,13 @@ export class VirusController {
     public playSoundEffect() {
         var x = randomIntFromInterval(0,2);
         if(x == 0) {
-            var audio = new Audio('../assets/audio/effects/Shoot1.mp3');
+            var audio = new Audio('./assets/audio/effects/Shoot1.mp3');
             audio.play();
         } else if(x == 1) {
-            var audio = new Audio('../assets/audio/effects/Shoot2.mp3');
+            var audio = new Audio('./assets/audio/effects/Shoot2.mp3');
             audio.play();
         } else if(x == 2) {
-            var audio = new Audio('../assets/audio/effects/Shoot3.mp3');
+            var audio = new Audio('./assets/audio/effects/Shoot3.mp3');
             audio.play();
         }
     }
