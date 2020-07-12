@@ -22,6 +22,23 @@
     vertical-align: middle;
 }
 
+#splash_hack_logo{
+    top: 55%;
+    left:5%;
+    position: fixed;
+    width:300px;
+}
+
+#splash_gmtk_logo{
+    top: 60%;
+    left:65%;
+    width:300px;
+    position: fixed;
+}
+
+
+
+
 #restartbutton{
     background-color: chartreuse !important;
     position: fixed;
@@ -202,7 +219,16 @@
     color: #ff39ce;
     border: solid;
     border-color: #ff39ce;
-    margin-top: 170px;
+    margin-top: 40px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.startTitle {
+    color: chartreuse;
+    font-size: 40pt;
+    text-align: center;
+    margin-top: 50px;
     margin-left: 100px;
     margin-right: 100px;
 }

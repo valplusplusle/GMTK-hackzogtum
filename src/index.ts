@@ -44,6 +44,12 @@ function registerCBs(){
 }
 
 function startGame() {
+
+	for(let i=0; i<4; i++){
+        document.getElementById(`splashv${i}`)?.classList.remove("shown");
+        document.getElementById(`splashv${i}`)?.classList.add("hidden");
+	}
+
 	const keygame = new KeyGame();
 	keygame.registerEndOfGameCB(()=>{
         //console.log("you fucked up");

@@ -113,22 +113,36 @@
 
         <!-- TODO: make splash screen nice and overlay the game -->
         <div id="splash" class="splash">
+
+            <div id="splashv0" class="virus virus1 shown" ></div>
+            <div id="splashv1" class="virus virus2 shown" ></div>
+            <div id="splashv3" class="virus virus6 shown" ></div>
+
             <div class="volumeControl">
                 <button onclick="document.getElementById('bgaudio').volume+=0.1">Volume Up</button>
                 <button onclick="document.getElementById('bgaudio').volume-=0.1">Volume Down</button>
                 <button onclick="let e = document.getElementById('bgaudio'); e.muted = !e.muted">Mute</button>
             </div> 
-            
+            <div class="startTitle">
+                Virus-Smasher
+            </div> 
+           
             <div class="startText">
                 Help Help! Our sytem is under ATTACK! You are the greatest HACKER!!!11 in the world. You have to bring the Situation under Control! <br>
                 Spam the glowing keys to stop the attack wave and at the same time you have to kill the viruses from the screen!
             </div>
 
-            <button id="startGameBtn" class="btn startButton" onclick="sound.playBackgroundMusic();">Start game</button>
-            <div class="form-check hcModeInput">
-                <input class="form-check-input" type="checkbox" id="hardcore_mode" name="Hardcore Mode" value="HC">
-                <label class="form-check-label hcModeLabel" for="hardcore_mode">Hardcore Mode</label>
-            </div>
+                    <button id="startGameBtn" class="btn startButton" onclick="sound.playBackgroundMusic();">Start game</button>
+                    <div class="form-check hcModeInput">
+                        <input class="form-check-input" type="checkbox" id="hardcore_mode" name="Hardcore Mode" value="HC">
+                        <label class="form-check-label hcModeLabel" for="hardcore_mode">Hardcore Mode</label>
+                    </div>
+
+
+            <img id=splash_hack_logo src="assets/images/test.gif"></img>
+            <img id=splash_gmtk_logo src="assets/images/gmtk_logo.png"></img>
+
+
         </div>
 
     </body>
