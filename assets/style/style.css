@@ -1,3 +1,67 @@
+
+.endscreen{
+    background-color: black;
+    width: 960px;
+    height: 540px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+
+    background-size: cover;
+    border: solid;
+    border-color: black;
+    z-index: 1000;
+
+
+}
+.endscreen-logos{
+    height:200px;
+    width: 960px;
+    vertical-align: middle;
+}
+
+#restartbutton{
+    background-color: chartreuse !important;
+    position: fixed;
+    top: 90%;
+    left: 48%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+
+}
+
+.endscreen-logos img{
+    height:150px;
+}
+.endscreen-endscore{
+    font-size: 20pt;
+    color:pink;
+    text-align: center;
+}
+
+.endscreen-endscore div{
+    margin:auto;
+}
+
+.endscreen--hidden{
+    visibility: hidden;
+}
+.endscreen--visible{
+    visibility: visible;
+}
+
+.endscrenn-text{
+    vertical-align: middle;
+    text-align: center;
+    color:red;
+    font-size: 50pt;
+}
+
+
+
+
 .gameRegion {
     background-color: black;
     width: 960px;

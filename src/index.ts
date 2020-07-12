@@ -12,6 +12,7 @@ const vc = new VirusController();
 const keygame = new KeyGame();
 
 function registerCBs(){ 
+	
     for(var i=0; i<7; i++){
         let div = document.getElementById(`virus${i}`);
         if(div){
@@ -39,8 +40,15 @@ function startGame() {
 	const keygame = new KeyGame();
 	keygame.registerEndOfGameCB(()=>{
         console.log("you fucked up");
+		vc.stop();
         stopBackgroundMusic();
-        alert("you fucked up - the system is out of control ;)")
+        document.getElementById("endscreen")?.classList.remove("endscreen--hidden");
+		document.getElementById("endscreen")?.classList.add("endscreen--visible");
+		let scoreField = document.getElementById("endscoreval");
+		if(scoreField){
+		 scoreField.innerHTML = vc.getScore();
+		}
+		console.log("end");
     }); 
 	keygame.registerGettinCriticalCB(()=>{console.log("it's gettin harder")}); 
 	
