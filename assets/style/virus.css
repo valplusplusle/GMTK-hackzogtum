@@ -145,3 +145,27 @@
 		background-image: url('../images/virus/ralof_b.png');
 	}	
 }
+
+
+.explosion0 {
+    -webkit-animation-name: animationExplosion0;
+	-webkit-animation-duration: 1.0s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
+}
+
+@keyframes animationExplosion0{
+	0% {
+		background-image: url('../images/explosion/explosion-state_0.png');
+	}
+    50% {
+		background-image: url('../images/explosion/explosion-state_1.png');
+	}	
+    75% {
+		background-image: url('../images/explosion/explosion-state_2.png');
+	}	
+    100% {
+		background-image: url('../images/explosion/explosion-state_3.png');
+	}	
+}

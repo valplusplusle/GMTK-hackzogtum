@@ -30,15 +30,18 @@
                 <button onclick="document.getElementById('bgaudio').volume-=0.1">Volume Down</button>
                 <button onclick="let e = document.getElementById('bgaudio'); e.muted = !e.muted">Mute</button>
             </div> 
-            <div id="screen" class="screen">
-                <div id="virus0" class="virus virus0 hidden" ></div>
-                <div id="virus1" class="virus virus1 hidden" ></div>
-                <div id="virus2" class="virus virus2 hidden" ></div>
-                <div id="virus3" class="virus virus3 hidden" ></div>
-                <div id="virus4" class="virus virus4 hidden" ></div>
-                <div id="virus5" class="virus virus5 hidden" ></div>
-                <div id="virus6" class="virus virus6 hidden" ></div>
+            <div id="screenPic" class="screenPic">
+                <div id="screen" class="screen">
+                    <div id="virus0" class="virus virus0 hidden" ></div>
+                    <div id="virus1" class="virus virus1 hidden" ></div>
+                    <div id="virus2" class="virus virus2 hidden" ></div>
+                    <div id="virus3" class="virus virus3 hidden" ></div>
+                    <div id="virus4" class="virus virus4 hidden" ></div>
+                    <div id="virus5" class="virus virus5 hidden" ></div>
+                    <div id="virus6" class="virus virus6 hidden" ></div>
+                </div>
             </div>
+
             <div id="keyboard" class="keyboard">
                 <div id="line1" class="line d-flex justify-content-between">
                     <div id="1" class="key key--noGlow key1"></div>
@@ -109,6 +112,12 @@
                 <button onclick="document.getElementById('bgaudio').volume-=0.1">Volume Down</button>
                 <button onclick="let e = document.getElementById('bgaudio'); e.muted = !e.muted">Mute</button>
             </div> 
+            
+            <div class="startText">
+                Help Help! Our sytem is under ATTACK! You are the greatest HACKER!!!11 in the world. You have to bring the Situation under Control! <br>
+                Spam the glowing keys to stop the attack wave and at the same time you have to kill the viruses from the screen!
+            </div>
+
             <button id="startGameBtn" class="btn startButton" onclick="sound.playBackgroundMusic();">Start game</button>
         </div>
 

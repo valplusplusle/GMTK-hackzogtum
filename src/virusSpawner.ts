@@ -8,12 +8,29 @@ function randomIntFromInterval(min: number, max: number) { // min and max includ
 
 // the screen has 15x10 virus pixels (vixels)
 const virusSize = 30;
+const moveIntervalTime = 2000;
+const FIELD_MAX_X = 15;
+const FIELD_MAX_Y = 10;
 
+enum Directions {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+}
+
+const allDirections = [Directions.UP, Directions.DOWN, Directions.LEFT, Directions.RIGHT];
+
+type Position = [
+    number,
+    number
+]
 
 export class VirusController {
-    private index: Map<number, [number, number]> = new Map();
+    private index: Map<number, Position> = new Map();
     private matrix: Array<Array<number>>;
     private points = 0;
+    private moveInterval: number | undefined;
 
     constructor() {
         this.matrix = this.newMatrix();
@@ -23,9 +40,9 @@ export class VirusController {
         return `${this.points}`;
 	}
     newMatrix() {
-        let m = new Array(15);
+        let m = new Array(FIELD_MAX_X);
         for (var i = 0; i < m.length; i++) {
-            let inner = new Array(10);
+            let inner = new Array(FIELD_MAX_Y);
             inner.fill(0);
             m[i] = inner;
         }
@@ -33,10 +50,28 @@ export class VirusController {
     }
 
     public start() {
+        this.points = 0;
         this.spawnRandomViruses();
     }
 
-    public spawnRandomViruses() {
+    public stop() {
+        this.delAllViruses();
+    }
+
+    configMoveTimer(numVirus: number) {
+        this.stopMoveTimer();
+
+        if (numVirus > 0) {
+            this.moveInterval = window.setInterval(() => this.migrateVirus(), moveIntervalTime / numVirus);
+        }
+    }
+
+    stopMoveTimer() {
+        window.clearInterval(this.moveInterval);
+        this.moveInterval = undefined;
+    }
+
+    spawnRandomViruses() {
         console.log("Spawning new Viruses.");
         let virusNumber = [];
         for (let i = 0; i < 7; i++) {
@@ -50,21 +85,15 @@ export class VirusController {
         virusNumber.forEach(id => {
             let placed = false;
             while (!placed) {
-                let x = Math.round(Math.random() * 14);
-                let y = Math.round(Math.random() * 9);
-                console.log(x + " " + y);
+                let x = Math.round(Math.random() * (FIELD_MAX_X-1));
+                let y = Math.round(Math.random() * (FIELD_MAX_Y-1));
+
                 if (this.isFree(x, y)) {
-                    console.log("free");
-                    this.matrix[x][y] = id;
-                    this.index.set(id, [x, y]);
-                    this.moveVirus(id, x, y);
+                    this.addVirus(id, [x, y]);
                     placed = true;
                 }
             }
         });
-
-        console.log("Showing Viruses.");
-        this.showAll();
     }
 
     hideVirus(id: number) {
@@ -75,13 +104,17 @@ export class VirusController {
         document.getElementById("virus"+id)?.classList.remove("hidden");
         document.getElementById("virus"+id)?.classList.add("shown");  
     }
-    hideAll() {
-        for (let i=0; i < 7; i++) {
-            this.hideVirus(i);
-        }
+
+    showExplosion(id:number){
+        document.getElementById("virus"+id)?.classList.remove("virus"+id);
+        document.getElementById("virus"+id)?.classList.add("explosion0");
+        setTimeout(this.hideVirusAndExplosion, 1000, id);
     }
-    showAll() {
-        this.index.forEach(([x, y], id:number) => this.showVirus(id));
+    hideVirusAndExplosion(id: number) {  
+        document.getElementById("virus"+id)?.classList.remove("explosion0");
+        document.getElementById("virus"+id)?.classList.add("hidden");
+        document.getElementById("virus"+id)?.classList.remove("shown");
+        document.getElementById("virus"+id)?.classList.add("virus"+id);
     }
 
     public async clickedVirus(event:any) {
@@ -90,12 +123,9 @@ export class VirusController {
     
         let virusId = Number.parseInt(event.target.id.slice(-1));
         console.log("Clicked on virus " + virusId);
-        this.hideVirus(virusId);
         let pos = this.index.get(virusId);
-        this.index.delete(virusId);
-        // remove from matrix
         if (pos) {
-            this.matrix[pos[0]][pos[1]] = 0;
+            this.killVirus(virusId, pos);
         }
 
         if (this.index.size == 0) {
@@ -104,7 +134,7 @@ export class VirusController {
         }
     }
 
-    public addPoints() {
+    addPoints() {
         this.points += 10;
         document.getElementById('screenScore')!.innerHTML = this.points.toString();
     }
@@ -113,12 +143,89 @@ export class VirusController {
         return this.matrix[x][y] == 0;
     }
 
-    moveVirus(id: number, x: number, y: number) {
+    migrateVirus() {
+        console.log("Trying to move Virus.");
+        let numVirus = this.index.size;
+        if (numVirus > 0) {
+            let selectedIndex = randomIntFromInterval(0, numVirus-1);
+            let virus = Array.from(this.index.entries())[selectedIndex];
+            this.maveRandomDirection(virus[0]);
+        }
+    }
+
+    addVirus(id: number, pos: Position) {
+        const [x, y] = pos;
+        this.matrix[x][y] = id;
+        this.index.set(id, [x, y]);
+        this.showVirus(id);
+
         let virus = document.getElementById("virus"+id);
         if (virus) {
             virus.style.top  = ((y * virusSize)) + "px";
             virus.style.left = ((x * virusSize)) + "px";
         }
+
+        this.configMoveTimer(this.index.size);
+    }
+    
+    killVirus(id: number, pos: Position) {
+        const [x, y] = pos;
+        this.index.delete(id);
+        this.matrix[x][y] = 0;
+        this.configMoveTimer(this.index.size);
+        this.showExplosion(id);
+    }
+
+    delVirus(id: number, pos: Position) {
+        const [x, y] = pos;
+        this.index.delete(id);
+        this.matrix[x][y] = 0;
+        this.hideVirus(id);
+        this.configMoveTimer(this.index.size);
+    }
+
+    delAllViruses() {
+        for (const v of this.index) {
+            this.delVirus(v[0], v[1]);
+        }
+    }
+
+    moveVirus(id: number, oldPos: Position, newPos: Position) {
+        this.delVirus(id, oldPos);
+        this.addVirus(id, newPos);
+    }
+
+    maveRandomDirection(id: number) {
+        let target = this.shuffle(allDirections);
+        let pos = this.index.get(id);
+        if (pos) {
+            const [x, y] = pos;
+            for (const dir of target) {
+                let dx = x;
+                let dy = y;
+                if (dir == Directions.LEFT)  { dx -= 1; }
+                if (dir == Directions.RIGHT) { dx += 1; }
+                if (dir == Directions.UP)    { dy -= 1; }
+                if (dir == Directions.DOWN)  { dy += 1; }
+                if (this.withinBounds(dx, dy) && this.isFree(dx, dy)) {
+                    this.moveVirus(id, [x, y], [dx, dy]);
+                    return;
+                }
+            }
+        }
+    }
+
+    withinBounds(x: number, y: number) {
+        return (x >= 0 && x < FIELD_MAX_X) && (y >= 0 && y < FIELD_MAX_Y);
+    }
+
+    shuffle<T>(arr: Array<T>): Array<T> {
+        let a = new Array(...arr);
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
     }
 
     public playSoundEffect() {

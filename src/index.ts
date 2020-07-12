@@ -39,8 +39,9 @@ function registerCBs(){
 function startGame() {
 	const keygame = new KeyGame();
 	keygame.registerEndOfGameCB(()=>{
+        console.log("you fucked up");
+		vc.stop();
         stopBackgroundMusic();
- //       alert("you fucked up - the system is out of control ;)")
         document.getElementById("endscreen")?.classList.remove("endscreen--hidden");
 		document.getElementById("endscreen")?.classList.add("endscreen--visible");
 		let scoreField = document.getElementById("endscoreval");

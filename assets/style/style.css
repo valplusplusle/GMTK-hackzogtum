@@ -101,11 +101,8 @@
 
 .startButton {
     background-color: chartreuse !important;
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, -50%);
+    margin-top: 50px;
+    margin-left: 440px;
 }
 
 .backgroundImage {
@@ -117,9 +114,19 @@
     height: 300px;
     width: 460px;
     position: absolute;
-    background-color: black;
-    left: 110px;
-    top: 40px;
+    left: 85px;
+    top: 50px;
+}
+
+.screenPic {
+    background-image: url(../images/GC_Bildschirm_05_aus_01.png);
+    height: 405px;
+    width: 670px;
+    position: absolute;
+    left: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 999999;
 }
 
 .screenScore {
@@ -132,12 +139,12 @@
 
 .keyboard {
     height: 150px;
-    width: 655px;
+    width: 710px;
     position: absolute;
-    background-color: black;
-    left: 10px;
     top: 400px;
     padding: 10px;
+    background-image: url(../images/GC_tastHinterg_02.png);
+    background-size: cover;
 }
 
 .scoreBoard {
@@ -182,4 +189,13 @@
 .textOfProgressBars {
     color: #ff39ce;
     text-align: center;
+}
+
+.startText {
+    color: #ff39ce;
+    border: solid;
+    border-color: #ff39ce;
+    margin-top: 170px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
